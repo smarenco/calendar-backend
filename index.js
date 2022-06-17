@@ -9,28 +9,35 @@
   con el comando npm run dev o si quiero simular lo que seria produccion seria npm start.
 
   luego instalamos npm i express@4.18.1
+  luego instalamos  npm i dotenv para manejar las variables de entorno
+  con process.env.xxx acceso a todas las variables de entorno
+
+  npm i express-validator
 */
 
 const express = require('express');
+require('dotenv').config();
 
 //Crear el servidor de express
 const app = express();
 
+//Directorio publico
+app.use( express.static('public') );
+
+
+//Lectura y parseo del body
+app.use( express.json() );
+
 
 //Rutas
-app.get('/', (req, res) => {
-
-    res.json({
-        ok: true,
-    })
-
-})
+app.use('/api/auth', require('./routes/auth'))
+//CRUD EVENTOS
 
 
 
 
 
 //Escuchar peticiones
-app.listen( 4000, () => {
-    console.log(`servidor corriendo en puerto ${ 4000 }`);
+app.listen( process.env.PORT , () => {
+    console.log(`servidor corriendo en puerto ${ process.env.PORT }`);
 });
