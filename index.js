@@ -13,13 +13,20 @@
   con process.env.xxx acceso a todas las variables de entorno
 
   npm i express-validator
+
+  instalamos npm i mongoose para poder coinectarno a una bd de mongo, en database/config se hace la conexion.
+  npm i bcryptjs para encriptar la contasenia
 */
 
 const express = require('express');
+const { dbConnection } = require('./database/config');
 require('dotenv').config();
 
 //Crear el servidor de express
 const app = express();
+
+//Base de datos
+dbConnection();
 
 //Directorio publico
 app.use( express.static('public') );
