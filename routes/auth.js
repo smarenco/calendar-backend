@@ -10,6 +10,7 @@ const router = Router();
 
 const { crearUsuario, revalidarToken, loginUsuario } = require('../controllers/auth');
 const { validarCampos } = require('../middelwares/validar-campos');
+const { validarJWT } = require('../middelwares/validar-jwt');
 
 
 router.post(
@@ -33,6 +34,6 @@ router.post(
     ], 
     loginUsuario)
 
-router.get('/renew', revalidarToken)
+router.get('/renew', validarJWT, revalidarToken)
 
 module.exports = router;

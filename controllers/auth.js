@@ -94,12 +94,29 @@ const loginUsuario = async(req, res = response ) => {
     
 }
 
-const revalidarToken = (req, res = response) => {
+const revalidarToken = async(req, res = response) => {
 
-    res.status(200).json({
-        ok: true,
-        msg: 'renew'
-    })
+    const uid = req.uid;
+    const name = req.name;
+
+    console.log(uid)
+
+    try {
+        //Generar JWT
+        const token = await generarJWT( uid, name);
+
+        res.status(200).json({
+            ok: true,
+            token
+        })
+
+    } catch(err){
+
+        res.status(401).json({
+            ok: false,
+            msg: 'Error al generar el token'
+        })
+    }
 }
 
 module.exports = {

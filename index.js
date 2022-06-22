@@ -16,10 +16,13 @@
 
   instalamos npm i mongoose para poder coinectarno a una bd de mongo, en database/config se hace la conexion.
   npm i bcryptjs para encriptar la contasenia
+
+  npm i cors se instala este paquete para controlar desde donde se puede invocar este servicio, se puede restringir o habilitar a todos.
 */
 
 const express = require('express');
 const { dbConnection } = require('./database/config');
+var cors = require('cors')
 require('dotenv').config();
 
 //Crear el servidor de express
@@ -27,6 +30,9 @@ const app = express();
 
 //Base de datos
 dbConnection();
+
+//CORS
+app.use(cors());
 
 //Directorio publico
 app.use( express.static('public') );
@@ -37,7 +43,8 @@ app.use( express.json() );
 
 
 //Rutas
-app.use('/api/auth', require('./routes/auth'))
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/events', require('./routes/events'));
 //CRUD EVENTOS
 
 
