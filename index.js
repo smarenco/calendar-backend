@@ -18,6 +18,8 @@
   npm i bcryptjs para encriptar la contasenia
 
   npm i cors se instala este paquete para controlar desde donde se puede invocar este servicio, se puede restringir o habilitar a todos.
+
+  Importante hay que instalar heroku https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 */
 
 const express = require('express');
