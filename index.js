@@ -20,6 +20,7 @@
   npm i cors se instala este paquete para controlar desde donde se puede invocar este servicio, se puede restringir o habilitar a todos.
 
   Importante hay que instalar heroku https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
+  Verificar logs en produccion con heroku logs -n 1000 --tail en linea de comandos.
 */
 
 const express = require('express');
